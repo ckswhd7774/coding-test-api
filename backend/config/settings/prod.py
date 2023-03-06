@@ -2,7 +2,7 @@ import os
 
 import requests
 
-from config.secrets import get_database_secret
+# from config.secrets import get_secret
 from config.settings.base import *
 
 
@@ -15,25 +15,25 @@ CORS_ALLOWED_ORIGINS = [
     'https://www.frontend-domain.com',
 ]
 
-DATABASE_SECRET = get_database_secret(PROJECT_NAME)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DATABASE_SECRET['NAME'],
-        'USER': DATABASE_SECRET['USER'],
-        'PASSWORD': DATABASE_SECRET['PASSWORD'],
-        'HOST': DATABASE_SECRET['WRITER_HOST'],
-        'PORT': DATABASE_SECRET['PORT'],
-    },
-    'reader': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DATABASE_SECRET['NAME'],
-        'USER': DATABASE_SECRET['USER'],
-        'PASSWORD': DATABASE_SECRET['PASSWORD'],
-        'HOST': DATABASE_SECRET['READER_HOST'],
-        'PORT': DATABASE_SECRET['PORT'],
-    },
-}
+# DATABASE_SECRET = get_secret(PROJECT_NAME)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': DATABASE_SECRET['NAME'],
+#         'USER': DATABASE_SECRET['USER'],
+#         'PASSWORD': DATABASE_SECRET['PASSWORD'],
+#         'HOST': DATABASE_SECRET['WRITER_HOST'],
+#         'PORT': DATABASE_SECRET['PORT'],
+#     },
+#     'reader': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': DATABASE_SECRET['NAME'],
+#         'USER': DATABASE_SECRET['USER'],
+#         'PASSWORD': DATABASE_SECRET['PASSWORD'],
+#         'HOST': DATABASE_SECRET['READER_HOST'],
+#         'PORT': DATABASE_SECRET['PORT'],
+#     },
+# }
 
 
 # REDIS
