@@ -12,15 +12,15 @@ from app.user.models import User
 class UserMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'phone', 'username', 'birth_date']
-        read_only_fields = ['email', 'phone', 'username', 'birth_date']
+        fields = ["email", "phone", "username", "birth_date"]
+        read_only_fields = ["email", "phone", "username", "birth_date"]
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'phone', 'username', 'birth_date']
-        read_only_fields = ['phone']
+        fields = ["email", "phone", "username", "birth_date"]
+        read_only_fields = ["phone"]
 
     @transaction.atomic
     def update(self, instance, validated_data):
@@ -42,15 +42,15 @@ class UserLoginSerializer(serializers.Serializer):
         return RefreshToken.for_user(user)
 
     def validate(self, attrs):
-        self.user = authenticate(request=self.context['request'], email=attrs['email'], password=attrs['password'])
+        self.user = authenticate(request=self.context["request"], email=attrs["email"], password=attrs["password"])
         if self.user:
             refresh = self.get_token(self.user)
         else:
-            raise ValidationError(['인증정보가 일치하지 않습니다.'])
+            raise ValidationError(["인증정보가 일치하지 않습니다."])
 
         data = dict()
-        data['refresh'] = str(refresh)
-        data['access'] = str(refresh.access_token)
+        data["refresh"] = str(refresh)
+        data["access"] = str(refresh.access_token)
 
         return data
 
@@ -80,21 +80,21 @@ class UserRegisterSerializer(serializers.Serializer):
     refresh = serializers.CharField(read_only=True)
 
     def validate(self, attrs):
-        password = attrs.get('password')
-        password_confirm = attrs.pop('password_confirm', None)
+        password = attrs.get("password")
+        password_confirm = attrs.pop("password_confirm", None)
 
-        if 'password' in User.REGISTER_FIELDS:
+        if "password" in User.REGISTER_FIELDS:
             errors = {}
             # 비밀번호 검증
             if password != password_confirm:
-                errors['password'] = ['비밀번호가 일치하지 않습니다.']
-                errors['password_confirm'] = ['비밀번호가 일치하지 않습니다.']
+                errors["password"] = ["비밀번호가 일치하지 않습니다."]
+                errors["password_confirm"] = ["비밀번호가 일치하지 않습니다."]
             else:
                 try:
                     validate_password(password)
                 except DjangoValidationError as error:
-                    errors['password'] = list(error)
-                    errors['password_confirm'] = list(error)
+                    errors["password"] = list(error)
+                    errors["password_confirm"] = list(error)
 
             if errors:
                 raise ValidationError(errors)
@@ -109,6 +109,6 @@ class UserRegisterSerializer(serializers.Serializer):
         refresh = RefreshToken.for_user(user)
 
         return {
-            'access': refresh.access_token,
-            'refresh': refresh,
+            "access": refresh.access_token,
+            "refresh": refresh,
         }

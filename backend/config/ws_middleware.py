@@ -2,7 +2,7 @@ from urllib import parse
 
 from channels.auth import AuthMiddleware
 from channels.db import database_sync_to_async
-from channels.sessions import SessionMiddleware, CookieMiddleware
+from channels.sessions import CookieMiddleware, SessionMiddleware
 from django.contrib.auth.models import AnonymousUser
 from rest_framework_simplejwt.tokens import AccessToken
 

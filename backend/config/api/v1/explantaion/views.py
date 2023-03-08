@@ -1,3 +1,4 @@
+from app.explantaion.models import Explantaion
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
@@ -6,7 +7,6 @@ from api.common.pagination import CursorPagination
 from api.v1.explantaion.filters import ExplantaionFilter
 from api.v1.explantaion.permissions import ExplantaionPermission
 from api.v1.explantaion.serializers import ExplantaionSerializer
-from app.explantaion.models import Explantaion
 
 
 @extend_schema_view(

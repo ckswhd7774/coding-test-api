@@ -1,10 +1,10 @@
 import random
 
+from app.question.models import Question
 from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from app.question.models import Question
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")
@@ -219,7 +219,6 @@ class QuestionUpdateAPITest(APITestCase):
         },
     ]
 
-
     FAILURE_STATUS_CODE = status.HTTP_400_BAD_REQUEST
     FAILURE_DATA_SET = [
         # {
@@ -289,6 +288,7 @@ class QuestionDestroyAPITest(APITestCase):
     - 성공 상태 코드 테스트
     - 삭제된 데이터 테스트
     """
+
     MODEL = Question
     METHOD = "delete"
     PATH = "/v1/question/{id}/"

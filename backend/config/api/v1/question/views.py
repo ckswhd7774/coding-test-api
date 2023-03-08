@@ -1,3 +1,4 @@
+from app.question.models import Question
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
@@ -6,7 +7,6 @@ from api.common.pagination import CursorPagination
 from api.v1.question.filters import QuestionFilter
 from api.v1.question.permissions import QuestionPermission
 from api.v1.question.serializers import QuestionSerializer
-from app.question.models import Question
 
 
 @extend_schema_view(

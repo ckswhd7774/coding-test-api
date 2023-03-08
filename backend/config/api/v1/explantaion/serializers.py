@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from app.explantaion.models import Explantaion
+from rest_framework import serializers
 
 
 class ExplantaionSerializer(serializers.ModelSerializer):

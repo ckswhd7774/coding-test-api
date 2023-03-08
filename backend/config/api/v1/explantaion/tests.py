@@ -1,10 +1,10 @@
 import random
 
+from app.explantaion.models import Explantaion
 from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from app.explantaion.models import Explantaion
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")
@@ -219,7 +219,6 @@ class ExplantaionUpdateAPITest(APITestCase):
         },
     ]
 
-
     FAILURE_STATUS_CODE = status.HTTP_400_BAD_REQUEST
     FAILURE_DATA_SET = [
         # {
@@ -289,6 +288,7 @@ class ExplantaionDestroyAPITest(APITestCase):
     - 성공 상태 코드 테스트
     - 삭제된 데이터 테스트
     """
+
     MODEL = Explantaion
     METHOD = "delete"
     PATH = "/v1/explantaion/{id}/"

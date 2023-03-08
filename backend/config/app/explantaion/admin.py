@@ -1,6 +1,5 @@
-from django.contrib import admin
-
 from app.explantaion.models import Explantaion
+from django.contrib import admin
 
 
 @admin.register(Explantaion)

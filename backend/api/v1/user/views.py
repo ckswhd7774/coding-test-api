@@ -8,7 +8,9 @@ from rest_framework.viewsets import GenericViewSet
 from api.v1.user.serializers import (
     UserLoginSerializer,
     UserLogoutSerializer,
-    UserRegisterSerializer, UserMeSerializer, UserSerializer,
+    UserMeSerializer,
+    UserRegisterSerializer,
+    UserSerializer,
 )
 from app.user.models import User
 
@@ -24,6 +26,7 @@ class UserViewSet(
 ):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
     def get_object(self):
         return self.request.user
 
@@ -77,4 +80,3 @@ class UserViewSet(
     @action(methods=["POST"], detail=False)
     def register(self, request, *args, **kwargs):
         return self._create(request, *args, **kwargs)
-
