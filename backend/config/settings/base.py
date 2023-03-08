@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent.parent
 env = environ.Env()
 
 environ.Env.read_env(
