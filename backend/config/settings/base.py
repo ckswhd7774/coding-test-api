@@ -21,6 +21,11 @@ ALLOWED_HOSTS = []
 LOCAL_APPS = [
     "app.common.apps.CommonConfig",
     "app.user.apps.UserConfig",
+    "app.answer.apps.AnswerConfig",
+    "app.explanation.apps.ExplanationConfig",
+    "app.question.apps.QuestionConfig",
+    "app.test_paper.apps.TestPaperConfig",
+    "app.submit_answer.apps.SubmitAnswerConfig",
 ]
 
 THIRD_PARTY_APPS = [

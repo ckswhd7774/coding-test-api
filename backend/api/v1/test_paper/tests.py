@@ -4,13 +4,13 @@ from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from app.question.models import Question
+from app.test_paper.models import TestPaper
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")
 
 
-class QuestionListAPITest(APITestCase):
+class TestPaperListAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 페이지네이션 응답 필드 테스트
@@ -18,9 +18,9 @@ class QuestionListAPITest(APITestCase):
     - 성공 응답 필드 테스트
     """
 
-    MODEL = Question
+    MODEL = TestPaper
     METHOD = "get"
-    PATH = "/v1/question/"
+    PATH = "/v1/test_paper/"
     PAGINATED_RESPONSE_FIELDS = ["cursor", "results"]
     PAGINATION_DEFAULT_PAGE_SIZE = 20
 
@@ -78,7 +78,7 @@ class QuestionListAPITest(APITestCase):
             )
 
 
-class QuestionCreateAPITest(APITestCase):
+class TestPaperCreateAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 필드 테스트
@@ -87,9 +87,9 @@ class QuestionCreateAPITest(APITestCase):
     - 실패 응답 필드 테스트
     """
 
-    MODEL = Question
+    MODEL = TestPaper
     METHOD = "post"
-    PATH = "/v1/question/"
+    PATH = "/v1/test_paper/"
 
     SUCCESS_STATUS_CODE = status.HTTP_201_CREATED
     SUCCESS_DATA_SET = [
@@ -154,15 +154,15 @@ class QuestionCreateAPITest(APITestCase):
             )
 
 
-class QuestionRetrieveAPITest(APITestCase):
+class TestPaperRetrieveAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 테스트
     """
 
-    MODEL = Question
+    MODEL = TestPaper
     METHOD = "get"
-    PATH = "/v1/question/{id}/"
+    PATH = "/v1/test_paper/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_RESPONSE_DATA = {"id": 1}  # TODO: add success response data
@@ -197,7 +197,7 @@ class QuestionRetrieveAPITest(APITestCase):
         )
 
 
-class QuestionUpdateAPITest(APITestCase):
+class TestPaperUpdateAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 테스트
@@ -206,9 +206,9 @@ class QuestionUpdateAPITest(APITestCase):
     - 실패 응답 테스트
     """
 
-    MODEL = Question
+    MODEL = TestPaper
     METHOD = "put"
-    PATH = "/v1/question/{id}/"
+    PATH = "/v1/test_paper/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_DATA_SET = [
@@ -218,6 +218,7 @@ class QuestionUpdateAPITest(APITestCase):
             "instance": {"id": 1},  # TODO: add success instance data set
         },
     ]
+
 
     FAILURE_STATUS_CODE = status.HTTP_400_BAD_REQUEST
     FAILURE_DATA_SET = [
@@ -283,15 +284,14 @@ class QuestionUpdateAPITest(APITestCase):
             )
 
 
-class QuestionDestroyAPITest(APITestCase):
+class TestPaperDestroyAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 삭제된 데이터 테스트
     """
-
-    MODEL = Question
+    MODEL = TestPaper
     METHOD = "delete"
-    PATH = "/v1/question/{id}/"
+    PATH = "/v1/test_paper/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_204_NO_CONTENT
 

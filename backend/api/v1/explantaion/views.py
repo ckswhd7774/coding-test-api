@@ -1,12 +1,12 @@
-from app.explantaion.models import Explantaion
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
 
 from api.common.pagination import CursorPagination
-from api.v1.explantaion.filters import ExplantaionFilter
+from api.v1.explantaion.filters import ExplanationFilter
 from api.v1.explantaion.permissions import ExplantaionPermission
 from api.v1.explantaion.serializers import ExplantaionSerializer
+from app.explanation.models import Explanation
 
 
 @extend_schema_view(
@@ -25,11 +25,12 @@ class ExplantaionViewSet(
     mixins.DestroyModelMixin,
     GenericViewSet,
 ):
-    queryset = Explantaion.objects.all()
+    queryset = Explanation.objects.all()
     serializer_class = ExplantaionSerializer
     permission_classes = [ExplantaionPermission]
     pagination_class = CursorPagination
-    filter_class = ExplantaionFilter
+    filter_class = ExplanationFilter
+    lookup_url_kwarg = "explantaion_id"
 
     def get_queryset(self):
         queryset = super().get_queryset()

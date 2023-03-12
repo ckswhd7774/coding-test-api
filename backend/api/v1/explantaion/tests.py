@@ -1,10 +1,10 @@
 import random
 
-from app.explantaion.models import Explantaion
 from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+from app.explanation.models import Explantaion
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")
@@ -20,7 +20,7 @@ class ExplantaionListAPITest(APITestCase):
 
     MODEL = Explantaion
     METHOD = "get"
-    PATH = "/v1/explantaion/"
+    PATH = "/v1/explanation/"
     PAGINATED_RESPONSE_FIELDS = ["cursor", "results"]
     PAGINATION_DEFAULT_PAGE_SIZE = 20
 
@@ -89,7 +89,7 @@ class ExplantaionCreateAPITest(APITestCase):
 
     MODEL = Explantaion
     METHOD = "post"
-    PATH = "/v1/explantaion/"
+    PATH = "/v1/explanation/"
 
     SUCCESS_STATUS_CODE = status.HTTP_201_CREATED
     SUCCESS_DATA_SET = [
@@ -162,7 +162,7 @@ class ExplantaionRetrieveAPITest(APITestCase):
 
     MODEL = Explantaion
     METHOD = "get"
-    PATH = "/v1/explantaion/{id}/"
+    PATH = "/v1/explanation/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_RESPONSE_DATA = {"id": 1}  # TODO: add success response data
@@ -208,7 +208,7 @@ class ExplantaionUpdateAPITest(APITestCase):
 
     MODEL = Explantaion
     METHOD = "put"
-    PATH = "/v1/explantaion/{id}/"
+    PATH = "/v1/explanation/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_DATA_SET = [
@@ -291,7 +291,7 @@ class ExplantaionDestroyAPITest(APITestCase):
 
     MODEL = Explantaion
     METHOD = "delete"
-    PATH = "/v1/explantaion/{id}/"
+    PATH = "/v1/explanation/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_204_NO_CONTENT
 

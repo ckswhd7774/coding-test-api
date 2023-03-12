@@ -1,5 +1,6 @@
-from app.answer.models import Answer
 from django.contrib import admin
+
+from app.answer.models import Answer
 
 
 @admin.register(Answer)

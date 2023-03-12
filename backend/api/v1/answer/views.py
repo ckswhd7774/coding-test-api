@@ -1,4 +1,3 @@
-from app.answer.models import Answer
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
@@ -7,6 +6,7 @@ from api.common.pagination import CursorPagination
 from api.v1.answer.filters import AnswerFilter
 from api.v1.answer.permissions import AnswerPermission
 from api.v1.answer.serializers import AnswerSerializer
+from app.answer.models import Answer
 
 
 @extend_schema_view(
@@ -30,6 +30,7 @@ class AnswerViewSet(
     permission_classes = [AnswerPermission]
     pagination_class = CursorPagination
     filter_class = AnswerFilter
+    lookup_url_kwarg = "answer_id"
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from api.v1.explantaion.views import ExplantaionViewSet
 
 router = DefaultRouter()
-router.register("explantaion", ExplantaionViewSet)
+router.register("explanation", ExplantaionViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

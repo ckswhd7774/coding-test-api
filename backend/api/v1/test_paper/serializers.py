@@ -1,17 +1,14 @@
 from rest_framework import serializers
 
-from app.answer.models import Answer
+from app.test_paper.models import TestPaper
 
 
-class AnswerSerializer(serializers.ModelSerializer):
-
+class TestPaperSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
+        model = TestPaper
         fields = [
             "id",
-
         ]
-        read_only_fields = ["id"]
 
     def validate(self, attrs):
         attrs = super().validate(attrs)

@@ -1,10 +1,11 @@
-from app.explantaion.models import Explantaion
 from rest_framework import serializers
+
+from app.explanation.models import Explanation
 
 
 class ExplantaionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Explantaion
+        model = Explanation
         fields = [
             "id",
         ]

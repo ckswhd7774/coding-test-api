@@ -1,10 +1,10 @@
 import random
 
-from app.answer.models import Answer
 from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+from app.answer.models import Answer
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")

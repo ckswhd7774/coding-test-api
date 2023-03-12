@@ -1,6 +1,11 @@
-from app.question.models import Question
-from django_filters.rest_framework import FilterSet
+from django_filters import rest_framework as filters
 
 
-class QuestionFilter(FilterSet):
-    pass
+class QuestionFilter(filters.FilterSet):
+    type = filters.CharFilter(method="type_filter")
+
+    @staticmethod
+    def type_filter(queryset, name, value):
+        if value:
+            queryset = queryset.filter(type=value)
+        return queryset
