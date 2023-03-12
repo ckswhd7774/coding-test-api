@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.test_paper.models import TestPaper, QuestionInTestPaper
+from app.test_paper.models import QuestionInTestPaper, TestPaper
 
 
 @admin.register(TestPaper)

@@ -6,7 +6,7 @@ from app.common.models import BaseModel
 class TestPaper(BaseModel):
     title = models.CharField(verbose_name="시험지 명", max_length=64)
     text = models.TextField(verbose_name="내용")
-    time_limit = models.SmallIntegerField(verbose_name='제한 시간')
+    time_limit = models.SmallIntegerField(verbose_name="제한 시간")
 
     class Meta:
         db_table = "test_paper"

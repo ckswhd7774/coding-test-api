@@ -6,6 +6,7 @@ from app.common.models import BaseModel
 class SubmitAnswer(BaseModel):
     user = models.ForeignKey("user.User", on_delete=models.CASCADE)
     question = models.ForeignKey("question.Question", on_delete=models.CASCADE)
+    text = models.TextField(verbose_name="내용")
     is_correct = models.BooleanField(verbose_name="정답 유무")
 
     class Meta:

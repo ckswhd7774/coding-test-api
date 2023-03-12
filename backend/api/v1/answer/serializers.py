@@ -4,12 +4,10 @@ from app.answer.models import Answer
 
 
 class AnswerSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Answer
         fields = [
             "id",
-
         ]
         read_only_fields = ["id"]
 

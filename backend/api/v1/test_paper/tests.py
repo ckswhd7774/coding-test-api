@@ -219,7 +219,6 @@ class TestPaperUpdateAPITest(APITestCase):
         },
     ]
 
-
     FAILURE_STATUS_CODE = status.HTTP_400_BAD_REQUEST
     FAILURE_DATA_SET = [
         # {
@@ -289,6 +288,7 @@ class TestPaperDestroyAPITest(APITestCase):
     - 성공 상태 코드 테스트
     - 삭제된 데이터 테스트
     """
+
     MODEL = TestPaper
     METHOD = "delete"
     PATH = "/v1/test_paper/{id}/"

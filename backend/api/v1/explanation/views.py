@@ -3,9 +3,9 @@ from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
 
 from api.common.pagination import CursorPagination
-from api.v1.explantaion.filters import ExplanationFilter
-from api.v1.explantaion.permissions import ExplantaionPermission
-from api.v1.explantaion.serializers import ExplantaionSerializer
+from api.v1.explanation.filters import ExplanationFilter
+from api.v1.explanation.permissions import ExplantaionPermission
+from api.v1.explanation.serializers import ExplantaionSerializer
 from app.explanation.models import Explanation
 
 
@@ -17,7 +17,7 @@ from app.explanation.models import Explanation
     partial_update=extend_schema(exclude=True),
     destroy=extend_schema(summary="Explantaion 삭제"),
 )
-class ExplantaionViewSet(
+class ExplanationViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
     mixins.RetrieveModelMixin,
