@@ -1,4 +1,4 @@
-from django.db.models import Exists, OuterRef, F, Avg
+from django.db.models import Avg, Exists, F, OuterRef
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
