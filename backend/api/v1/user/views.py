@@ -6,12 +6,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from api.v1.user.examples import login_examples
-from api.v1.user.serializers import (
-    UserLoginSerializer,
-    UserMeSerializer,
-    UserRegisterSerializer,
-    UserSerializer,
-)
+from api.v1.user.serializers import UserLoginSerializer, UserMeSerializer, UserRegisterSerializer, UserSerializer
 from app.user.models import User
 
 
