@@ -42,12 +42,3 @@ class CursorPagination(pagination.CursorPagination):
                 ]
             )
         )
-
-    def get_paginated_response_schema(self, schema):
-        return {
-            "type": "object",
-            "properties": {
-                "cursor": {"type": "sting"},
-                "results": schema,
-            },
-        }

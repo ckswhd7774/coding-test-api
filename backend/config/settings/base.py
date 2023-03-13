@@ -26,6 +26,7 @@ LOCAL_APPS = [
     "app.question.apps.QuestionConfig",
     "app.test_paper.apps.TestPaperConfig",
     "app.submit_answer.apps.SubmitAnswerConfig",
+    "app.bookmark.apps.BookmarkConfig",
 ]
 
 THIRD_PARTY_APPS = [
@@ -34,7 +35,6 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "django_hosts",
     "drf_spectacular",
-    # 'storages',
 ]
 
 DJANGO_APPS = [

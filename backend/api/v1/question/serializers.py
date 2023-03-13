@@ -1,14 +1,29 @@
 from rest_framework import serializers
 
+from api.v1.question.nested_serializers import QuestionExplanationSerializer, QuestionSubmitAnswerSerializer
 from app.question.models import Question
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    type = serializers.CharField(source="get_type_display")
+    category = serializers.CharField(source="category.get_name_display")
+    is_submitted = serializers.BooleanField(read_only=True)
+    explanation = QuestionExplanationSerializer(read_only=True)
+    submitanswer_set = QuestionSubmitAnswerSerializer(read_only=True, many=True)
+    score_avg = serializers.FloatField(read_only=True)
 
     class Meta:
         model = Question
-        fields = ["id", "type", "title", "text", "restrictions"]
+        fields = [
+            "id",
+            "category",
+            "title",
+            "text",
+            "restrictions",
+            "is_submitted",
+            "explanation",
+            "submitanswer_set",
+            "score_avg",
+        ]
         read_only_fields = ["id"]
 
     def validate(self, attrs):

@@ -4,7 +4,7 @@ from app.common.models import BaseModel
 
 
 class Answer(BaseModel):
-    question = models.ForeignKey("question.Question", on_delete=models.CASCADE)
+    question = models.OneToOneField("question.Question", on_delete=models.CASCADE)
     text = models.TextField(verbose_name="내용")
 
     class Meta:

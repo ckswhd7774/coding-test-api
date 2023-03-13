@@ -5,7 +5,7 @@ from rest_framework.viewsets import GenericViewSet
 from api.common.pagination import CursorPagination
 from api.v1.explanation.filters import ExplanationFilter
 from api.v1.explanation.permissions import ExplantaionPermission
-from api.v1.explanation.serializers import ExplantaionSerializer
+from api.v1.explanation.serializers import ExplanationSerializer
 from app.explanation.models import Explanation
 
 
@@ -26,11 +26,11 @@ class ExplanationViewSet(
     GenericViewSet,
 ):
     queryset = Explanation.objects.all()
-    serializer_class = ExplantaionSerializer
+    serializer_class = ExplanationSerializer
     permission_classes = [ExplantaionPermission]
     pagination_class = CursorPagination
     filter_class = ExplanationFilter
-    lookup_url_kwarg = "explantaion_id"
+    lookup_url_kwarg = "explanation_id"
 
     def get_queryset(self):
         queryset = super().get_queryset()

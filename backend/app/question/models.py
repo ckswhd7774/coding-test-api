@@ -3,7 +3,7 @@ from django.db import models
 from app.common.models import BaseModel
 
 
-class QuestionTypeChoices(models.IntegerChoices):
+class QuestionCategoryChoices(models.IntegerChoices):
     stack_q = 1, "스택&큐"
     e_s = 2, "완전탐색"
     dp = 3, "DP"
@@ -11,7 +11,7 @@ class QuestionTypeChoices(models.IntegerChoices):
 
 
 class QuestionCategory(BaseModel):
-    name = models.CharField(verbose_name="유형 이름", max_length=32)
+    name = models.PositiveSmallIntegerField(verbose_name="유형 이름", choices=QuestionCategoryChoices.choices)
 
     class Meta:
         db_table = "question_category"

@@ -32,5 +32,5 @@ class SubmitAnswerViewSet(
     filter_class = SubmitAnswerFilter
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = SubmitAnswer.objects.select_related("user", "question").filter(user_id=self.request.user.id)
         return queryset

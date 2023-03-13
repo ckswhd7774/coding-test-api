@@ -1,3 +1,4 @@
+from django.db.models import Exists, OuterRef, F, Avg
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
@@ -7,6 +8,7 @@ from api.v1.question.filters import QuestionFilter
 from api.v1.question.permissions import QuestionPermission
 from api.v1.question.serializers import QuestionSerializer
 from app.question.models import Question
+from app.submit_answer.models import SubmitAnswer
 
 
 @extend_schema_view(
@@ -33,5 +35,15 @@ class QuestionViewSet(
     lookup_url_kwarg = "question_id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = (
+            Question.objects.select_related("category", "explanation")
+            .annotate(
+                is_submitted=Exists(
+                    SubmitAnswer.objects.filter(user_id=self.request.user.id, question_id=OuterRef("id"))
+                ),
+                score_avg=Avg("submitanswer__score"),
+            )
+            .prefetch_related("submitanswer_set")
+            .order_by("level", "submit_count", "-created_at", "score_avg")
+        )
         return queryset

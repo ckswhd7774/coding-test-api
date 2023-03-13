@@ -3,7 +3,7 @@ from rest_framework import serializers
 from app.explanation.models import Explanation
 
 
-class ExplantaionSerializer(serializers.ModelSerializer):
+class ExplanationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Explanation
         fields = [

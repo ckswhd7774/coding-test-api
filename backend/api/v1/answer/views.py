@@ -33,5 +33,5 @@ class AnswerViewSet(
     lookup_url_kwarg = "answer_id"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Answer.objects.select_related("question", "question__explanation")
         return queryset

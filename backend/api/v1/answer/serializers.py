@@ -1,15 +1,19 @@
 from rest_framework import serializers
 
+from api.v1.answer.nested_serializers import AnswerExplanationSerializer
 from app.answer.models import Answer
 
 
 class AnswerSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Answer
         fields = [
             "id",
+            "question",
+            "text",
         ]
-        read_only_fields = ["id"]
+        read_only_fields = ["id", "question"]
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
