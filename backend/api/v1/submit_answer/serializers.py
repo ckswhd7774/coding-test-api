@@ -1,3 +1,4 @@
+from django.db import transaction
 from rest_framework import serializers
 
 from app.submit_answer.models import SubmitAnswer
@@ -13,6 +14,12 @@ class SubmitAnswerSerializer(serializers.ModelSerializer):
         attrs = super().validate(attrs)
         return attrs
 
+    @transaction.atomic
     def create(self, validated_data):
-        instance = SubmitAnswer.objects.create(**validated_data, user_id=self.context["request"].user.id)
+        instance = SubmitAnswer.objects.create(**validated_data, user_id=self.context["view"].kwargs["question_id"])
+        return instance
+
+    @transaction.atomic
+    def update(self, instance, validated_data):
+        instance = super().update(instance, validated_data)
         return instance

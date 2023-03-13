@@ -7,6 +7,7 @@ from api.common.pagination import CursorPagination
 from api.v1.question.filters import QuestionFilter
 from api.v1.question.permissions import QuestionPermission
 from api.v1.question.serializers import QuestionSerializer
+from app.bookmark.models import Bookmark
 from app.question.models import Question
 from app.submit_answer.models import SubmitAnswer
 
@@ -42,6 +43,7 @@ class QuestionViewSet(
                     SubmitAnswer.objects.filter(user_id=self.request.user.id, question_id=OuterRef("id"))
                 ),
                 score_avg=Avg("submitanswer__score"),
+                is_bookmarked=Exists(Bookmark.objects.filter(user_id=self.request.user.id, question_id=OuterRef("id"))),
             )
             .prefetch_related("submitanswer_set")
             .order_by("level", "submit_count", "-created_at", "score_avg")

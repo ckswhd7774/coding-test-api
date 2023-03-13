@@ -59,17 +59,6 @@ class UserLoginSerializer(serializers.Serializer):
         return validated_data
 
 
-class UserLogoutSerializer(serializers.Serializer):
-    uid = serializers.CharField(required=False, help_text="기기의 고유id")
-
-    def create(self, validated_data):
-        user = self.context["request"].user
-        if validated_data.get("uid"):
-            user.disconnect_device(validated_data["uid"])
-
-        return {}
-
-
 class UserRegisterSerializer(serializers.Serializer):
     email = serializers.CharField(write_only=True, required=False)
     phone = serializers.CharField(write_only=True, required=False)

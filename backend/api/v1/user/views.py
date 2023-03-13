@@ -5,9 +5,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
+from api.v1.user.examples import login_examples
 from api.v1.user.serializers import (
     UserLoginSerializer,
-    UserLogoutSerializer,
     UserMeSerializer,
     UserRegisterSerializer,
     UserSerializer,
@@ -17,8 +17,7 @@ from app.user.models import User
 
 @extend_schema_view(
     me=extend_schema(summary="유저 조회"),
-    login=extend_schema(summary="유저 로그인"),
-    logout=extend_schema(summary="유저 로그아웃"),
+    login=extend_schema(summary="유저 로그인", examples=login_examples),
     register=extend_schema(summary="유저 회원가입"),
 )
 class UserViewSet(
@@ -35,8 +34,6 @@ class UserViewSet(
             return UserMeSerializer
         elif self.action == "login":
             return UserLoginSerializer
-        elif self.action == "logout":
-            return UserLogoutSerializer
         elif self.action == "register":
             return UserRegisterSerializer
         raise Exception
@@ -68,13 +65,6 @@ class UserViewSet(
 
     @action(methods=["POST"], detail=False)
     def login(self, request, *args, **kwargs):
-        return self._create(request, *args, **kwargs)
-
-    @action(methods=["POST"], detail=False)
-    def logout(self, request, *args, **kwargs):
-        """
-        모바일앱에서만 사용하며, 유저와 디바이스 토큰의 연결을 끊어주기위해 사용합니다.
-        """
         return self._create(request, *args, **kwargs)
 
     @action(methods=["POST"], detail=False)

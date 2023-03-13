@@ -10,6 +10,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     explanation = QuestionExplanationSerializer(read_only=True)
     submitanswer_set = QuestionSubmitAnswerSerializer(read_only=True, many=True)
     score_avg = serializers.FloatField(read_only=True)
+    is_bookmarked = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = Question
@@ -23,6 +24,7 @@ class QuestionSerializer(serializers.ModelSerializer):
             "explanation",
             "submitanswer_set",
             "score_avg",
+            "is_bookmarked",
         ]
         read_only_fields = ["id"]
 

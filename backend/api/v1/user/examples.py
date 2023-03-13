@@ -12,7 +12,7 @@ login_failure = OpenApiExample(
     name="로그인 실패 요청",
     request_only=True,
     value={
-        "email": "example@admin.com",
+        "email": "admin@admin.com",
         "password": "12",
     },
 )
