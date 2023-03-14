@@ -12,8 +12,8 @@ class SubmitAnswer(BaseModel):
     user = models.ForeignKey("user.User", on_delete=models.CASCADE)
     question = models.ForeignKey("question.Question", on_delete=models.CASCADE)
     text = models.TextField(verbose_name="내용")
-    is_correct = models.BooleanField(verbose_name="정답 유무")
-    score = models.PositiveSmallIntegerField(verbose_name="점수")
+    is_correct = models.BooleanField(verbose_name="정답 유무", default=False)
+    score = models.PositiveSmallIntegerField(verbose_name="점수", default=0)
     status = models.PositiveSmallIntegerField(verbose_name="상태", choices=StatusChoices.choices)
 
     class Meta:
