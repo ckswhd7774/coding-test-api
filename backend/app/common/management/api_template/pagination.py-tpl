@@ -1,5 +1,0 @@
-from api.common.pagination import CursorPagination
-
-
-class {{ camel_case_app_name }}CursorPagination(CursorPagination):
-    pass

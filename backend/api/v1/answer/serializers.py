@@ -1,5 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from app.answer.models import Answer
 
@@ -15,7 +16,8 @@ class AnswerSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "question"]
 
     def validate(self, attrs):
-        attrs = super().validate(attrs)
+        if not attrs["text"]:
+            raise ValidationError("답을 적어주세요")
         return attrs
 
     @transaction.atomic
