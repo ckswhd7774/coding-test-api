@@ -24,9 +24,11 @@ LOCAL_APPS = [
     "app.answer.apps.AnswerConfig",
     "app.explanation.apps.ExplanationConfig",
     "app.question.apps.QuestionConfig",
-    "app.test_paper.apps.TestPaperConfig",
     "app.submit_answer.apps.SubmitAnswerConfig",
     "app.bookmark.apps.BookmarkConfig",
+    "app.mock_exam.apps.MockExamConfig",
+    "app.mock_test_paper.apps.MockTestPaperConfig",
+    "app.submit_mock.apps.SubmitMockConfig",
 ]
 
 THIRD_PARTY_APPS = [

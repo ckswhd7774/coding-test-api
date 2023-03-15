@@ -4,13 +4,13 @@ from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from app.test_paper.models import TestPaper
+from app.submit_mock.models import SubmitMock
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")
 
 
-class TestPaperListAPITest(APITestCase):
+class SubmitMockListAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 페이지네이션 응답 필드 테스트
@@ -18,9 +18,9 @@ class TestPaperListAPITest(APITestCase):
     - 성공 응답 필드 테스트
     """
 
-    MODEL = TestPaper
+    MODEL = SubmitMock
     METHOD = "get"
-    PATH = "/v1/test_paper/"
+    PATH = "/v1/submit_mock/"
     PAGINATED_RESPONSE_FIELDS = ["cursor", "results"]
     PAGINATION_DEFAULT_PAGE_SIZE = 20
 
@@ -78,7 +78,7 @@ class TestPaperListAPITest(APITestCase):
             )
 
 
-class TestPaperCreateAPITest(APITestCase):
+class SubmitMockCreateAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 필드 테스트
@@ -87,9 +87,9 @@ class TestPaperCreateAPITest(APITestCase):
     - 실패 응답 필드 테스트
     """
 
-    MODEL = TestPaper
+    MODEL = SubmitMock
     METHOD = "post"
-    PATH = "/v1/test_paper/"
+    PATH = "/v1/submit_mock/"
 
     SUCCESS_STATUS_CODE = status.HTTP_201_CREATED
     SUCCESS_DATA_SET = [
@@ -154,15 +154,15 @@ class TestPaperCreateAPITest(APITestCase):
             )
 
 
-class TestPaperRetrieveAPITest(APITestCase):
+class SubmitMockRetrieveAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 테스트
     """
 
-    MODEL = TestPaper
+    MODEL = SubmitMock
     METHOD = "get"
-    PATH = "/v1/test_paper/{id}/"
+    PATH = "/v1/submit_mock/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_RESPONSE_DATA = {"id": 1}  # TODO: add success response data
@@ -197,7 +197,7 @@ class TestPaperRetrieveAPITest(APITestCase):
         )
 
 
-class TestPaperUpdateAPITest(APITestCase):
+class SubmitMockUpdateAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 테스트
@@ -206,9 +206,9 @@ class TestPaperUpdateAPITest(APITestCase):
     - 실패 응답 테스트
     """
 
-    MODEL = TestPaper
+    MODEL = SubmitMock
     METHOD = "put"
-    PATH = "/v1/test_paper/{id}/"
+    PATH = "/v1/submit_mock/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_DATA_SET = [
@@ -283,15 +283,15 @@ class TestPaperUpdateAPITest(APITestCase):
             )
 
 
-class TestPaperDestroyAPITest(APITestCase):
+class SubmitMockDestroyAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 삭제된 데이터 테스트
     """
 
-    MODEL = TestPaper
+    MODEL = SubmitMock
     METHOD = "delete"
-    PATH = "/v1/test_paper/{id}/"
+    PATH = "/v1/submit_mock/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_204_NO_CONTENT
 

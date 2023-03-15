@@ -4,14 +4,13 @@ from faker import Faker
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from app.answer.models import Answer
-from app.question.models import Question
+from app.mock_test_paper.models import MockTestPaper
 from app.user.models import User
 
 faker = Faker(locale="ko_KR")
 
 
-class AnswerListAPITest(APITestCase):
+class MockTestPaperListAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 페이지네이션 응답 필드 테스트
@@ -19,40 +18,27 @@ class AnswerListAPITest(APITestCase):
     - 성공 응답 필드 테스트
     """
 
-    MODEL = Answer
+    MODEL = MockTestPaper
     METHOD = "get"
-    PATH = "/v1/question/{question_id}/answer/"
+    PATH = "/v1/mock_test_paper/"
     PAGINATED_RESPONSE_FIELDS = ["cursor", "results"]
     PAGINATION_DEFAULT_PAGE_SIZE = 20
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
-    SUCCESS_RESPONSE_FIELDS = ["id", "question", "text"]  # TODO: add success response fields
+    SUCCESS_RESPONSE_FIELDS = ["id"]  # TODO: add success response fields
 
     @classmethod
     def create_test_data(cls):
-        question_data_set = [
-            Question(
-                id=i + 1,
-                category_id=random.randint(1, 2),
-                title=faker.text(max_nb_chars=10),
-                text=faker.text(max_nb_chars=100),
-                restrictions=faker.text(max_nb_chars=10),
-                level=random.randint(1, 3),
-                score=random.randint(0, 100),
-                submit_count=random.randint(1, 100),
-            )
-            for i in range(0, 25)
-        ]
-
         data_set = [
             {
-                "id": i + 1,
-                "question_id": i + 1,
-                "text": faker.text(max_nb_chars=100),
+                # "name": faker.name(),
+                # "birth": faker.date(),
+                # "age": random.randint(1, 100)
+                # "description": faker.text(max_nb_chars=100),
+                # "is_married": random.choice([True, False]),
             }
             for i in range(0, 25)
-        ]
-        Question.objects.bulk_create(question_data_set)
+        ]  # TODO: add test data
         cls.MODEL.objects.bulk_create([cls.MODEL(**data) for data in data_set])
 
     @classmethod
@@ -92,7 +78,7 @@ class AnswerListAPITest(APITestCase):
             )
 
 
-class AnswerCreateAPITest(APITestCase):
+class MockTestPaperCreateAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 필드 테스트
@@ -101,9 +87,9 @@ class AnswerCreateAPITest(APITestCase):
     - 실패 응답 필드 테스트
     """
 
-    MODEL = Answer
+    MODEL = MockTestPaper
     METHOD = "post"
-    PATH = "/v1/answer/"
+    PATH = "/v1/mock_test_paper/"
 
     SUCCESS_STATUS_CODE = status.HTTP_201_CREATED
     SUCCESS_DATA_SET = [
@@ -168,15 +154,15 @@ class AnswerCreateAPITest(APITestCase):
             )
 
 
-class AnswerRetrieveAPITest(APITestCase):
+class MockTestPaperRetrieveAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 테스트
     """
 
-    MODEL = Answer
+    MODEL = MockTestPaper
     METHOD = "get"
-    PATH = "/v1/answer/{id}/"
+    PATH = "/v1/mock_test_paper/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_RESPONSE_DATA = {"id": 1}  # TODO: add success response data
@@ -211,7 +197,7 @@ class AnswerRetrieveAPITest(APITestCase):
         )
 
 
-class AnswerUpdateAPITest(APITestCase):
+class MockTestPaperUpdateAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 성공 응답 테스트
@@ -220,9 +206,9 @@ class AnswerUpdateAPITest(APITestCase):
     - 실패 응답 테스트
     """
 
-    MODEL = Answer
+    MODEL = MockTestPaper
     METHOD = "put"
-    PATH = "/v1/answer/{id}/"
+    PATH = "/v1/mock_test_paper/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_200_OK
     SUCCESS_DATA_SET = [
@@ -297,15 +283,15 @@ class AnswerUpdateAPITest(APITestCase):
             )
 
 
-class AnswerDestroyAPITest(APITestCase):
+class MockTestPaperDestroyAPITest(APITestCase):
     """
     - 성공 상태 코드 테스트
     - 삭제된 데이터 테스트
     """
 
-    MODEL = Answer
+    MODEL = MockTestPaper
     METHOD = "delete"
-    PATH = "/v1/answer/{id}/"
+    PATH = "/v1/mock_test_paper/{id}/"
 
     SUCCESS_STATUS_CODE = status.HTTP_204_NO_CONTENT
 

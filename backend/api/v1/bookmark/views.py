@@ -32,5 +32,5 @@ class BookmarkViewSet(
     filter_class = BookmarkFilter
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(user=self.request.user)
         return queryset

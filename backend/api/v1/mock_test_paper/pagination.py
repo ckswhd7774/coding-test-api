@@ -1,5 +1,5 @@
 from api.common.pagination import CursorPagination
 
 
-class TestPaperCursorPagination(CursorPagination):
+class MockTestPaperCursorPagination(CursorPagination):
     pass

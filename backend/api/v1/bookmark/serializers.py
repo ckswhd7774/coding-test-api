@@ -5,11 +5,12 @@ from app.bookmark.models import Bookmark
 
 
 class BookmarkSerializer(serializers.ModelSerializer):
+    question = serializers.CharField(source="question.title")
+
     class Meta:
         model = Bookmark
-        fields = [
-            "id",
-        ]
+        fields = ["id", "user", "question"]
+        read_only_fields = ["id", "user"]
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
@@ -17,10 +18,5 @@ class BookmarkSerializer(serializers.ModelSerializer):
 
     @transaction.atomic
     def create(self, validated_data):
-        instance = super().create(validated_data)
-        return instance
-
-    @transaction.atomic
-    def update(self, instance, validated_data):
-        instance = super().update(instance, validated_data)
+        instance = Bookmark.objects.create(user_id=self.context["request"].id, question_id=validated_data["question"])
         return instance
