@@ -7,6 +7,7 @@ from api.v1.answer.filters import AnswerFilter
 from api.v1.answer.permissions import AnswerPermission
 from api.v1.answer.serializers import AnswerSerializer
 from app.answer.models import Answer
+from config.cache import cache_get_queryset
 
 
 @extend_schema_view(
@@ -32,6 +33,7 @@ class AnswerViewSet(
     filter_class = AnswerFilter
     lookup_url_kwarg = "answer_id"
 
+    @cache_get_queryset("answer")
     def get_queryset(self):
         queryset = Answer.objects.select_related("question", "question__explanation")
         return queryset

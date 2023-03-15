@@ -10,8 +10,8 @@ from app.submit_answer.tasks import grading
 class SubmitAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubmitAnswer
-        fields = ["id", "user", "question", "is_correct", "text", "status", "score"]
-        read_only_fields = ["id", "user", "is_correct", "status", "score"]
+        fields = ["id", "user", "question", "is_correct", "text", "status", "score", "created_at"]
+        read_only_fields = ["id", "user", "is_correct", "status", "score", "created_at"]
 
     def validate(self, attrs):
         try:

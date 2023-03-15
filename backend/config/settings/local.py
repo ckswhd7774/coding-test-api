@@ -44,11 +44,14 @@ DATABASES = {
 REDIS_HOST = "localhost"
 
 # CHANNELS
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
-#     }
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(REDIS_HOST, 6379)],
+        },
+    },
+}
 
 # CELERY
 CELERY_BROKER_URL = f"redis://{REDIS_HOST}:6379/0"

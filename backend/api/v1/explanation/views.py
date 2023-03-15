@@ -7,6 +7,7 @@ from api.v1.explanation.filters import ExplanationFilter
 from api.v1.explanation.permissions import ExplantaionPermission
 from api.v1.explanation.serializers import ExplanationSerializer
 from app.explanation.models import Explanation
+from config.cache import cache_get_queryset
 
 
 @extend_schema_view(
@@ -32,6 +33,7 @@ class ExplanationViewSet(
     filter_class = ExplanationFilter
     lookup_url_kwarg = "explanation_id"
 
+    @cache_get_queryset("explanation")
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset
