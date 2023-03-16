@@ -1,5 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from api.v1.question.nested_serializers import (
     QuestionAnswerSerializer,
@@ -50,5 +51,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     @transaction.atomic
     def update(self, instance, validated_data):
+        if not Question.objects.get(id=self.context['view'].kwargs['question_id']).user == self.context['request'].user:
+            raise ValidationError('문제를 생성한 유저만 수정이 가능합니다.')
         instance = super().update(instance, validated_data)
         return instance
