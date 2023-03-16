@@ -22,11 +22,12 @@ class QuestionCategory(BaseModel):
 
 class Question(BaseModel):
     category = models.ForeignKey("question.QuestionCategory", on_delete=models.CASCADE)
+    user = models.ForeignKey("user.User", on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(verbose_name="제목", max_length=64)
     text = models.TextField(verbose_name="내용")
     restrictions = models.TextField(verbose_name="제한 사항", null=True, blank=True)
     level = models.PositiveSmallIntegerField(verbose_name="난이도")
-    score = models.PositiveSmallIntegerField(verbose_name="점수")
+    score = models.PositiveSmallIntegerField(verbose_name="점수", default=0)
     submit_count = models.IntegerField(verbose_name="응시 횟수", default=0)
 
     class Meta:

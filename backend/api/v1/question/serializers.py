@@ -1,16 +1,22 @@
+from django.db import transaction
 from rest_framework import serializers
 
-from api.v1.question.nested_serializers import QuestionExplanationSerializer, QuestionSubmitAnswerSerializer
+from api.v1.question.nested_serializers import (
+    QuestionExplanationSerializer,
+    QuestionSubmitAnswerSerializer,
+    QuestionAnswerSerializer,
+)
 from app.question.models import Question
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    category = serializers.CharField(source="category.get_name_display")
+    user = serializers.CharField(source="user.name", read_only=True)
     is_submitted = serializers.BooleanField(read_only=True)
-    explanation = QuestionExplanationSerializer(read_only=True)
-    submitanswer_set = QuestionSubmitAnswerSerializer(read_only=True, many=True)
     score_avg = serializers.FloatField(read_only=True)
     is_bookmarked = serializers.BooleanField(read_only=True)
+    explanation = QuestionExplanationSerializer(read_only=True)
+    submitanswer_set = QuestionSubmitAnswerSerializer(read_only=True, many=True)
+    answer = QuestionAnswerSerializer(read_only=True)
 
     class Meta:
         model = Question
@@ -20,22 +26,29 @@ class QuestionSerializer(serializers.ModelSerializer):
             "title",
             "text",
             "restrictions",
+            "user",
+            "level",
+            "score",
+            "submit_count",
             "is_submitted",
-            "explanation",
-            "submitanswer_set",
             "score_avg",
             "is_bookmarked",
+            "explanation",
+            "submitanswer_set",
+            "answer",
         ]
-        read_only_fields = ["id"]
+        read_only_fields = ["id", "submit_count", "score"]
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
         return attrs
 
+    @transaction.atomic
     def create(self, validated_data):
-        instance = super().create(validated_data)
+        instance = Question.objects.create(**validated_data, user=self.context["request"].user)
         return instance
 
+    @transaction.atomic
     def update(self, instance, validated_data):
         instance = super().update(instance, validated_data)
         return instance

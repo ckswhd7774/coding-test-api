@@ -2,10 +2,10 @@ from django_filters import rest_framework as filters
 
 
 class QuestionFilter(filters.FilterSet):
-    type = filters.CharFilter(method="type_filter")
+    category = filters.CharFilter(method="category_filter")
 
     @staticmethod
-    def type_filter(queryset, name, value):
+    def category_filter(queryset, name, value):
         if value:
-            queryset = queryset.filter(type=value)
+            queryset = queryset.filter(category=value)
         return queryset

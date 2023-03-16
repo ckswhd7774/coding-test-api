@@ -35,5 +35,5 @@ class ExplanationViewSet(
 
     @cache_get_queryset("explanation")
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(question_id=self.kwargs["question_id"])
         return queryset

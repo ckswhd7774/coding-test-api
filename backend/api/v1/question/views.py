@@ -37,7 +37,7 @@ class QuestionViewSet(
 
     def get_queryset(self):
         queryset = (
-            Question.objects.select_related("category", "explanation")
+            Question.objects.select_related("category", "explanation", "user")
             .annotate(
                 is_submitted=Exists(
                     SubmitAnswer.objects.filter(user_id=self.request.user.id, question_id=OuterRef("id"))

@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from app.answer.models import Answer
 from app.explanation.models import Explanation
+from app.question.models import QuestionCategory
 from app.submit_answer.models import SubmitAnswer
 
 

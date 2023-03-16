@@ -35,5 +35,7 @@ class AnswerViewSet(
 
     @cache_get_queryset("answer")
     def get_queryset(self):
-        queryset = Answer.objects.select_related("question", "question__explanation")
+        queryset = Answer.objects.select_related("question", "question__explanation").filter(
+            question_id=self.kwargs["question_id"]
+        )
         return queryset
