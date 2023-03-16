@@ -72,7 +72,8 @@ python manage.py test api
 ```
 
 ## ERD
-![스크린샷 2023-03-16 오후 9.51.56.png](..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-16%20%EC%98%A4%ED%9B%84%209.51.56.png)
+<img width="456" alt="스크린샷 2023-03-16 오후 9 51 56" src="https://user-images.githubusercontent.com/77820288/225642595-445872c8-115a-48a9-8c7e-55a64b59a633.png">
+
 
 ## 기술적으로 고민한 부분들
 ```
