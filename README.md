@@ -72,5 +72,11 @@ python manage.py test api
 ```
 
 ## ERD
-- url
-## 성능측정 및 개선 내용
+![스크린샷 2023-03-16 오후 9.51.56.png](..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-16%20%EC%98%A4%ED%9B%84%209.51.56.png)
+
+## 기술적으로 고민한 부분들
+```
+- api까지 완성하진 않았지만 모의고사 DB 설계 및 api 설계에 대한 부분들.
+- 해당 데이터를 만든 유저가 본인임을 인증할 때 serializer.py에서 validation 체크를 진행해야 할지? 
+  아니면 permissions.py에서 체크를 해야 할지? 에 대한 부분들
+```

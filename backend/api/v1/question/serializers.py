@@ -51,7 +51,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     @transaction.atomic
     def update(self, instance, validated_data):
-        if not Question.objects.get(id=self.context['view'].kwargs['question_id']).user == self.context['request'].user:
-            raise ValidationError('문제를 생성한 유저만 수정이 가능합니다.')
+        if not Question.objects.get(id=self.context["view"].kwargs["question_id"]).user == self.context["request"].user:
+            raise ValidationError("문제를 생성한 유저만 수정이 가능합니다.")
         instance = super().update(instance, validated_data)
         return instance
